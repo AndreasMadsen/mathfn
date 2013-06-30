@@ -1,15 +1,18 @@
 
 function absoluteEqual(s) {
   for (var i = 0, l = s.map.length; i < l; i++) {
-    if (Number.isFinite(s.map[i][1])) {
+    var args = s.map[i].slice(0, -1);
+    var last = s.map[i][ s.map[i].length - 1 ];
+
+    if (Number.isFinite(last)) {
       s.test.ok(
-        Math.abs( s.fn(s.map[i][0]) - s.map[i][1] ) < s.limit,
+        Math.abs( s.fn.apply(null, args) - last) < s.limit,
         'almost absolute equal'
       );
     } else {
-      s.test.equal(
-        s.fn(s.map[i][0]), s.map[i][1],
-        'infinity equal'
+      s.test.ok(
+        Object.is(s.fn.apply(null, args), last),
+        'exact equal'
       );
     }
   }
@@ -18,15 +21,18 @@ exports.absoluteEqual = absoluteEqual;
 
 function relativeEqual(s) {
   for (var i = 0, l = s.map.length; i < l; i++) {
-    if (Number.isFinite(s.map[i][1])) {
+    var args = s.map[i].slice(0, -1);
+    var last = s.map[i][ s.map[i].length - 1 ];
+
+    if (Number.isFinite(last)) {
       s.test.ok(
-        Math.abs( s.fn(s.map[i][0]) - s.map[i][1] ) / s.map[i][1] < s.limit,
+        Math.abs( s.fn.apply(null, args) - last ) / last < s.limit,
         'almost relative equal'
       );
     } else {
-      s.test.equal(
-        s.fn(s.map[i][0]), s.map[i][1],
-        'infinity equal'
+      s.test.ok(
+        Object.is(s.fn.apply(null, args), last),
+        'exact equal'
       );
     }
   }
