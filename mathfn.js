@@ -1,5 +1,5 @@
 
-var files = ['erf', 'gamma', 'beta'];
+var files = ['erf', 'gamma', 'beta', 'log'];
 
 for (var i = 0, l = files.length; i < l; i++) {
   var fns = require('./functions/' + files[i] + '.js');

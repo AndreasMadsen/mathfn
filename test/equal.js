@@ -25,10 +25,17 @@ function relativeEqual(s) {
     var last = s.map[i][ s.map[i].length - 1 ];
 
     if (Number.isFinite(last)) {
-      s.test.ok(
-        Math.abs( s.fn.apply(null, args) - last ) / last < s.limit,
-        'almost relative equal'
-      );
+      if (last === 0) {
+        s.test.ok(
+          Math.abs( s.fn.apply(null, args) - last) < s.limit,
+          'almost absolute equal'
+        );
+      } else {
+        s.test.ok(
+          Math.abs( s.fn.apply(null, args) - last ) / last < s.limit,
+          'almost relative equal'
+        );
+      }
     } else {
       s.test.ok(
         Object.is(s.fn.apply(null, args), last),
