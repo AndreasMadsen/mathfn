@@ -1,5 +1,6 @@
 
 var gammaCollection = require('./gamma.js');
+var log1p = require('./log.js').log1p;
 
 //
 // The beta functions are taken from the jStat library, and modified to fit
@@ -120,7 +121,7 @@ function incBeta(x, a, b) {
       gammaCollection.logGamma(a) -
       gammaCollection.logGamma(b) +
       a * Math.log(x) +
-      b * Math.log(1 - x));
+      b * log1p(-x));
 
     // Use continued fraction directly.
     if (x < (a + 1) / (a + b + 2)) return bt * betacf(x, a, b) / a;
@@ -176,7 +177,7 @@ function invIncBeta(p, a, b) {
 		if(x === 0 || x === 1) return x;
 		err = incBeta(x, a, b) - p;
 
-    t = Math.exp(a1 * Math.log(x) + b1 * Math.log(1 - x) + afac);
+    t = Math.exp(a1 * Math.log(x) + b1 * log1p(-x) + afac);
 		u = err / t;
 		x -= (t = u / (1 - 0.5 * Math.min(1, u * (a1 / x - b1 / (1 - x)))));
 
