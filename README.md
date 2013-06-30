@@ -25,38 +25,65 @@ implemented functions and a few details.
 
 ### Error functions
 
-##### p = erf(x)
+##### `p = erf(x)` - The error function
 
 This function is implemented using the "Abramowitz & Stegun" approximation
 its theortical accuracy is `1.5 * 10^-7`. However the limitations of JavaScript
 might result in a lower accuracy.
 
-##### p = erfc(x)
+##### `p = erfc(x)` The complementary error function
 
 Unlike most implementation of `erfc(x)`, this is not calculated using `1 - erf(x)`,
 but is an acutall approximation of `erfc(x)`.
 
-##### p = inverf(p)
+##### `p = invErf(p)` The inverse error function
 
 This is calculated using `inverf(p) = -inverfc(p + 1)`, if you known of specific
 approximation please file an issue or pull request.
 
-##### p = inverfc(p)
+##### `p = invErfc(p)` The inverse complementary error function
 
 This uses a very common approximation of `inverfc(p)`, see source code for more
 details.
 
 ### Gamma functions
 
-##### p = gamma(x) = tgamma(x)
+##### `p = gamma(x)` The gamma function
 
 This acutally contains 3 diffrent approximations of `gamma(x)` which one is
 automatically determined by the `x` value.
 
-##### p = logGamma(x) = lgamma(x)
+##### `p = logGamma(x)` The logarithmic gamma function
 
 For values less than `12` the result is calculated using `log(gamma(x))`, in
 any other case a specific approximation is used.
+
+### Beta functions
+
+These are taken from the `jstat` library and modified to fit intro the API
+pattern used in this module. Futhermore they also take advanges of the special
+`log1p` function implemented in this module.
+
+##### `p = beta(x)` - The beta function
+
+##### `p = logBeta(x)` - The logarithmic beta function
+
+##### `p = incBeta(x)` - The incomplete beta function
+
+##### `p = invIncBeta(x)` - The inverse incomplete beta function
+
+### Logarithmic functions
+
+##### `y = log1p(x)` - Calculates `y = ln(1 + x)`
+
+When `x` is a very small number computers calculates `ln(1 + x)` as `ln(1)` which
+is `zero` and then every thing is lost. This is a specific approximation of
+`ln(1 + x)` and should be used only in case of small values. 
+
+##### `y = logFactorial(x)` - Calculates `y = ln(x!)`
+
+`x!` can quickly get very big, and exceed the limitation of the float value,
+approimating `ln(x!)` instead can in some cases solve this problem.
 
 ## Testing
 
