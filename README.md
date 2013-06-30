@@ -1,7 +1,7 @@
 #mathfn
 
 > Some basic but difficult to implement mathmatical functions
-> _Note: all distribution functions are excluded_
+> _Note: for distribution functions please see `[distributions](https://github.com/AndreasMadsen/distributions)`_
 
 ## Installation
 
