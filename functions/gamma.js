@@ -86,7 +86,6 @@ function gamma(x) {
 }
 
 // gamma functions goes under two names
-exports.tgamma = gamma;
 exports.gamma = gamma;
 
 //
@@ -132,5 +131,4 @@ function logGamma(x) {
     return (x - 0.5)*Math.log(x) - x + HALF_LOG_TWO_PI + series;
   }
 }
-exports.lgamma = logGamma;
 exports.logGamma = logGamma;

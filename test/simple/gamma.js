@@ -3,11 +3,6 @@ var test = require('tap').test;
 var mathfn = require('../../mathfn.js');
 var equals = require('../equal.js');
 
-test('gammat alias to gamma', function (t) {
-  t.equal(mathfn.gamma, mathfn.tgamma);
-  t.end();
-});
-
 test('testing gamma function', function (t) {
   var c = [
     [1e-20,              1e+20],
@@ -30,11 +25,6 @@ test('testing gamma function', function (t) {
     limit: 0.000005
   });
 
-  t.end();
-});
-
-test('gammal alias to logGamma', function (t) {
-  t.equal(mathfn.logGamma, mathfn.lgamma);
   t.end();
 });
 
