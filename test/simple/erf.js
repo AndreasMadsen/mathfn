@@ -38,7 +38,7 @@ test('testing inverse erf function', function (t) {
   equals.absoluteEqual({
     test: t,
     map: c,
-    fn: mathfn.inverf,
+    fn: mathfn.invErf,
     limit: 0.0000005
   });
   
@@ -80,7 +80,7 @@ test('testing inverse complementary erf function', function (t) {
   equals.absoluteEqual({
     test: t,
     map: c,
-    fn: mathfn.inverfc,
+    fn: mathfn.invErfc,
     limit: 0.0000005
   });
   

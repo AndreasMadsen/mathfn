@@ -70,7 +70,7 @@ exports.erfc = erfc;
 //  JavaScript: https://github.com/jstat/jstat/blob/master/src/special.js
 //  C: https://github.com/Peteysoft/sea_ice/blob/master/src/mcc_ice/inverf.c
 //
-function inverfc(p) {
+function invErfc(p) {
   if (p < 0.0 || p > 2.0) {
     throw RangeError('Argument must be betweeen 0 and 2');
   }
@@ -96,17 +96,17 @@ function inverfc(p) {
     return p < 1.0 ? x : -x;
   }
 }
-exports.inverfc = inverfc;
+exports.invErfc = invErfc;
 
 //
 // Used math: inverf(x) = -inverfc(1 + x);
 //  NOTE: you are welcome to add a specific approximation
 //
-function inverf(p) {
+function invErf(p) {
   if (p < -1.0 || p > 1.0) {
     throw RangeError('Argument must be betweeen -1 and 1');
   }
 
-  return -inverfc(p + 1);
+  return -invErfc(p + 1);
 }
-exports.inverf = inverf;
+exports.invErf = invErf;
