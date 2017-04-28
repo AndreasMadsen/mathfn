@@ -1,4 +1,4 @@
-#mathfn
+# mathfn
 
 > Some basic but difficult to implement mathmatical functions<br>
 > _Note: for distribution functions please see [`distributions`](https://github.com/AndreasMadsen/distributions)_
