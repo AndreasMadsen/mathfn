@@ -64,13 +64,13 @@ These are taken from the `jstat` library and modified to fit intro the API
 pattern used in this module. Futhermore they also take advanges of the special
 `log1p` function implemented in this module.
 
-##### `p = beta(x)` - The beta function
+##### `p = beta(x, y)` - The beta function
 
-##### `p = logBeta(x)` - The logarithmic beta function
+##### `p = logBeta(x, y)` - The logarithmic beta function
 
-##### `p = incBeta(x)` - The incomplete beta function
+##### `p = incBeta(x, a, b)` - The incomplete beta function
 
-##### `p = invIncBeta(x)` - The inverse incomplete beta function
+##### `p = invIncBeta(p, a, b)` - The inverse incomplete beta function
 
 ### Logarithmic functions
 
@@ -78,7 +78,7 @@ pattern used in this module. Futhermore they also take advanges of the special
 
 When `x` is a very small number computers calculates `ln(1 + x)` as `ln(1)` which
 is `zero` and then every thing is lost. This is a specific approximation of
-`ln(1 + x)` and should be used only in case of small values. 
+`ln(1 + x)` and should be used only in case of small values.
 
 ##### `y = logFactorial(x)` - Calculates `y = ln(x!)`
 
