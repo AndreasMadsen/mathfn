@@ -7,7 +7,7 @@ var log1p = require('./log.js').log1p;
 // the API and style pattern used in this module.
 // See: https://github.com/jstat/jstat/
 // License: MIT
-// 
+//
 
 //Copyright (c) 2013 jStat
 //
@@ -31,7 +31,7 @@ var log1p = require('./log.js').log1p;
 
 function beta(x, y) {
 	if (x < 0 || y < 0) {
-   throw RangeError('Arguments must be positive.'); 
+   throw RangeError('Arguments must be positive.');
 	}
 
   // Some special cases
@@ -51,13 +51,13 @@ exports.beta = beta;
 
 function logBeta(x, y) {
   if (x < 0 || y < 0) {
-   throw RangeError('Arguments must be positive.'); 
+   throw RangeError('Arguments must be positive.');
 	}
 
   // Some special cases
   else if (x === 0 && y === 0) return NaN;
   else if (x === 0 || y === 0) return Infinity;
-  
+
   else {
     return gammaCollection.logGamma(x) + gammaCollection.logGamma(y) - gammaCollection.logGamma(x + y);
   }
@@ -103,7 +103,7 @@ function betacf(x, a, b) {
 }
 
 // Returns the incomplete beta function I_x(a,b)
-function incBeta(x, a, b) {
+function regualizedBeta(x, a, b) {
 	if(x < 0 || x > 1) {
     throw new RangeError('First argument must be between 0 and 1.');
 	}
@@ -116,7 +116,7 @@ function incBeta(x, a, b) {
   else if (b === 0) return 0;
 
   else {
-    var bt = 
+    var bt =
       Math.exp(gammaCollection.logGamma(a + b) -
       gammaCollection.logGamma(a) -
       gammaCollection.logGamma(b) +
@@ -128,6 +128,9 @@ function incBeta(x, a, b) {
     // else use continued fraction after making the symmetry transformation.
     else return 1 - bt * betacf(1 - x, b, a) / b;
   }
+}
+function incBeta(x, a, b) {
+	return regualizedBeta(x, a, b) * beta(a, b);
 }
 exports.incBeta = incBeta;
 
@@ -150,7 +153,7 @@ function invIncBeta(p, a, b) {
         b1 = b - 1,
         j = 0,
         lna, lnb, pp, t, u, err, x, al, h, w, afac;
-  
+
 	if(a >= 1 && b >= 1) {
     pp = (p < 0.5) ? p : 1 - p;
     t = Math.sqrt(-2 * Math.log(pp));
@@ -175,7 +178,7 @@ function invIncBeta(p, a, b) {
 
   for(; j < 10; j++) {
 		if(x === 0 || x === 1) return x;
-		err = incBeta(x, a, b) - p;
+		err = regualizedBeta(x, a, b) - p;
 
     t = Math.exp(a1 * Math.log(x) + b1 * log1p(-x) + afac);
 		u = err / t;
