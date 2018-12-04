@@ -1,7 +1,7 @@
 {
   "name": "mathfn",
   "description": "Some basic but difficult to implement mathmatical functions",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Andreas Madsen <amwebdk@gmail.com>",
   "main": "./mathfn.js",
   "scripts": {
