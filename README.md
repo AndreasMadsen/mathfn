@@ -3,6 +3,8 @@
 > Some basic but difficult to implement mathmatical functions<br>
 > _Note: for distribution functions please see [`distributions`](https://github.com/AndreasMadsen/distributions)_
 
+**This module is now deprecated, please use [`cephes`](https://github.com/nearform/node-cephes) instead.**
+
 ## Installation
 
 ```sheel
